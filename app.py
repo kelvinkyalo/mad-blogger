@@ -20,9 +20,9 @@ posts = [
 ]
 
 @app.route('/')
-def index():
+def home():
     title = 'BlogHub'
-    return render_template('index.html', title=title, posts=posts)
+    return render_template('home.html', title=title, posts=posts)
 
 @app.route('/about')
 def about():
@@ -32,13 +32,19 @@ def about():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        flash(f'Account created for {{ form.username.data }}!', 'success')
+        flash(f'Account created for { form.username.data }!', 'success')
         return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form)
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'wamuyujoan4@gmail.com' and form.password.data == 'password':
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Login Unsuccessfull. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)
 
 if __name__ == '__main__':
