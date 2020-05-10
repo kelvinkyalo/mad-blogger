@@ -19,12 +19,12 @@
     <header class="site-header" style="background-color: #21233D;">
         <nav class="navbar navbar-expand-lg">
             <div class="navbar-nav mr-auto">
-                    <a href="#" class="nav-item nav-link" style="color: white;">Home</a>
-                    <a href="#" class="nav-item nav-link" style="color: white;">About</a>
+                    <a href="{{ url_for('home') }}" class="nav-item nav-link" style="color: white;">Home</a>
+                    <a href="{{ url_for('about') }}" class="nav-item nav-link" style="color: white;">About</a>
             </div>
             <div class="navbar-nav">
-                    <a href="#" class="nav-item nav-link" style="color: white;">Login</a>
-                    <a href="#" class="nav-item nav-link" style="color: white;">Sign Up</a>
+                    <a href="{{ url_for('login') }}" class="nav-item nav-link" style="color: white;">Login</a>
+                    <a href="{{ url_for('register') }}" class="nav-item nav-link" style="color: white;">Sign Up</a>
             </div>
         </nav>
     </header>
@@ -32,11 +32,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                {% with messages == get_flashed_messages(with categories=True) %}
+                {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
                         {% for category, message in messages %}
                             <div class="alert alert-{{ category }}">
-                                {{ messagge }}
+                                {{ message }}
                             </div>
                         {% endfor %}
                     {% endif %}
