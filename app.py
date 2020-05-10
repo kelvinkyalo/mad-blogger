@@ -1,26 +1,32 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '6f591923c71c2caa782aea56e8625a54'
+
+posts = [
+    {
+        'author' : 'Joan',
+        'title' : 'Blog Post 1',
+        'content' : 'First post',
+        'date_posted' : 'May 7 2020'
+    },
+    {
+        'author' : 'Simon',
+        'title' : 'Blog Post 2',
+        'content' : 'Second post',
+        'date_posted' : 'May 10 2020'
+    }
+]
 
 @app.route('/')
 def index():
-    title = 'Welcome'
-    return render_template('index.html', title=title)
+    title = 'BlogHub'
+    return render_template('index.html', title=title, posts=posts)
 
 @app.route('/about')
 def about():
-    title = 'Welcome'
-    return render_template('about.html', title=title)
+    return render_template('about.html', posts=posts)
 
-@app.route('/post')
-def post():
-    title = 'Welcome'
-    return render_template('post.html', title=title)
-
-@app.route('/contact')
-def contact():
-    title = 'Welcome'
-    return render_template('contact.html', title=title)
 
 if __name__ == '__main__':
     app.run(debug=True)
