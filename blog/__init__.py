@@ -9,6 +9,7 @@ app.config['SECRET_KEY'] = '6f591923c71c2caa782aea56e8625a54'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
-login_manage = LoginManager(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
 from blog import routes
