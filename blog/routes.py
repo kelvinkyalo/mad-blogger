@@ -14,6 +14,23 @@ from flask_mail import Message
 @app.route('/')
 @app.route('/home')
 def home():
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    title = 'BlogHub'
+    return render_template('home.html', title=title, posts=posts)
+
+@app.route('/newsletter', methods=['GET', 'POST'])
+def newsletter():
+    form = NewsLetterForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        flash('Your email has been received. You will be recieving weekly blog newsletters. Thank you.', 'success')
+        return redirect(url_for('home'))
+    return render_template('newsletter.html', form=form, title='Subscribe To Newsletters')
+
+
+@app.route('/quotes')
+def quotes():
     url = 'http://quotes.stormconsultancy.co.uk/random.json'
     author = 'Yogi Berra'
     quote = 'In theory, theory and practice are the same. In practice, they\u2019re not.'
@@ -25,20 +42,8 @@ def home():
         'quote' : r['quote'],
     }
     print(quotes)
+    return render_template('quotes.html', title='Random Quotes', quotes=quotes)
 
-    page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
-    title = 'BlogHub'
-    return render_template('home.html', title=title, posts=posts, quotes=quotes)
-
-@app.route('/newsletter', methods=['GET', 'POST'])
-def newsletter():
-    form = NewsLetterForm()
-    if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
-        flash('Your email has been received. You will be recieving weekly blog newsletters. Thank you.', 'success')
-        return redirect(url_for('home'))
-    return render_template('newsletter.html', form=form, title='Subscribe To Newsletters')
 
 @app.route('/about')
 def about():
