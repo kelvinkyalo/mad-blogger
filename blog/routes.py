@@ -16,8 +16,16 @@ def home():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
     title = 'BlogHub'
+    return render_template('home.html', title=title, posts=posts)
+
+@app.route('/newsletter', methods=['GET', 'POST'])
+def newsletter():
     form = NewsLetterForm()
-    return render_template('home.html', form=form, title=title, posts=posts)
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        flash('Your email has been received. You will be recieving weekly blog newsletters. Thank you.', 'success')
+        return redirect(url_for('home'))
+    return render_template('newsletter.html', form=form, title='Subscribe To Newsletters')
 
 @app.route('/about')
 def about():
