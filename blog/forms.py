@@ -97,6 +97,7 @@ class NewsLetterForm(FlaskForm):
     submit = SubmitField('Subscribe')
 
 class CommentForm(FlaskForm):
-    name = StringField('Title', validators=[DataRequired()])
-    email = TextAreaField('Content', validators=[DataRequired()])
-    message = SubmitField('Post')
+    name = StringField('Your name', validators=[DataRequired()])
+    email = StringField('email', validators=[DataRequired()])
+    message = TextAreaField('Message', validators=[DataRequired()])
+    submit = SubmitField('Comment')
