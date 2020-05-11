@@ -3,7 +3,7 @@ import secrets
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from blog import app, db, bcrypt, mail
-from blog.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
+from blog.forms import (RegistrationForm, LoginForm, UpdateAccountForm, NewsLetterForm,
                         PostForm, RequestResetForm, ResetPasswordForm)
 from blog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
@@ -16,7 +16,8 @@ def home():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
     title = 'BlogHub'
-    return render_template('home.html', title=title, posts=posts)
+    form = NewsLetterForm()
+    return render_template('home.html', form=form, title=title, posts=posts)
 
 @app.route('/about')
 def about():
