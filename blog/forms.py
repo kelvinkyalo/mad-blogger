@@ -88,10 +88,15 @@ class ResetPasswordForm(FlaskForm):
     submit = SubmitField('Reset Password')
 
 class NewsLetterForm(FlaskForm):
-    name = StringField('Your name',
+    username = StringField('Your name',
                             validators=[DataRequired(),
                             Length(min=2, max=20)])
     email = StringField('Email',
                             validators=[DataRequired(),
                             Email()])
     submit = SubmitField('Subscribe')
+
+class CommentForm(FlaskForm):
+    name = StringField('Title', validators=[DataRequired()])
+    email = TextAreaField('Content', validators=[DataRequired()])
+    message = SubmitField('Post')
