@@ -21,6 +21,7 @@
             <div class="navbar-nav mr-auto">
                 <a href="{{ url_for('home') }}" class="nav-item nav-link" style="color: white;"><i class="fa fa-home mr-1" aria-hidden="true" style="color: white;"></i>Home</a>
                 <a href="{{ url_for('about') }}" class="nav-item nav-link" style="color: white;">About</a>
+                <a href="{{ url_for('newsletter') }}" class="nav-item nav-link" style="color: white;">Newsletter</a>
             </div>
             <div class="navbar-nav">
                 {% if current_user.is_authenticated %}
@@ -37,6 +38,7 @@
     <br>
     <div class="container">
         <div class="row">
+            <!-- col-md-8 section -->
             <div class="col-md-8">
                 {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
@@ -49,8 +51,19 @@
                 {% endwith %}
                 {% block content %} {% endblock %}
             </div>
+            <!-- col-md-4 section -->
             <div class="col-md-4">
-                
+                <div class="card" style="padding: 20px; background-color: crimson;">
+                    <blockquote class="blockquote-reverse">
+                        <p style="font-family: monospace; 
+                                font-weight: 600;
+                                color: white;
+                                font-size: 16px;">
+                                {{ quotes.quote }}
+                        </p>
+                        <footer class="blockquote-footer">{{ quotes.author }}</footer>
+                    </blockquote>
+                </div>
             </div>
         </div>
     </div>
