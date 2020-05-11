@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-    {% for post in posts %}
+    {% for post in posts.items %}
         <div class="card">
             <article class="media ml-2">
                 <img class="rounded-circle mr-3 mt-2" style="width: 100px; height: 100px;" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
@@ -8,11 +8,22 @@
                     <h5 class="mt-0"><a style = "text-decoration: none; font-weight: 700;" href="">{{ post.author.username }}</a> 
                         <small><i class="text-muted ml-5">Posted on {{ post.date_posted.strftime("%m/%d/%Y, %H:%M") }}</i></small></h5>
                     <hr>
-                    <a href="#" style = "text-decoration: none;"><h6 style="font-weight: 700;">{{ post.title }}</h6></a>
+                    <a href="{{ url_for('post', post_id=post.id) }}" style = "text-decoration: none;"><h6 style="font-weight: 700;">{{ post.title }}</h6></a>
                     <p>{{ post.content }}</p>
                 </div>
             </article>
         </div>
         <br>
+    {% endfor %}
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+        {% if page_num %}
+            {% if posts.page == page_num %}
+                <a class="btn btn-info mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+            {% else %}
+                <a class="btn btn-outline-info mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+            {% endif %}
+        {% else %}
+        ...
+        {% endif %}
     {% endfor %}
 {% endblock %}
