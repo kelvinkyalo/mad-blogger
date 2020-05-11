@@ -22,6 +22,7 @@
             <div class="navbar-nav mr-auto">
                 <a href="{{ url_for('home') }}" class="nav-item nav-link" style="color: white;"><i class="fa fa-home mr-1" aria-hidden="true" style="color: white;"></i>Home</a>
                 <a href="{{ url_for('about') }}" class="nav-item nav-link" style="color: white;">About</a>
+                <a href="{{ url_for('quotes') }}" class="nav-item nav-link" style="color: white;">Quotes-Gen</a>
                 <a href="{{ url_for('newsletter') }}" class="nav-item nav-link" style="color: white;">Newsletter</a>
             </div>
             <div class="navbar-nav">
@@ -40,7 +41,7 @@
     <div class="container">
         <div class="row">
             <!-- col-md-8 section -->
-            <div class="col-md-8">
+            <div class="col-md-12">
                 {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
                         {% for category, message in messages %}
@@ -53,26 +54,9 @@
                 {% block content %} {% endblock %}
             </div>
             <!-- col-md-4 section -->
-            <div class="col-md-4">
-                <div class="card" style="padding: 20px; background-color: crimson;">
-                    <blockquote class="blockquote-reverse">
-                        <p style="font-family: monospace; 
-                                font-weight: 600;
-                                color: white;
-                                font-size: 16px;">
-                                <i class="fa fa-quote-left" aria-hidden="true" style="color: white; font-size: 26px;"></i></br>
-                                {{ quotes.quote }}
-                        </p>
-                        <footer class="blockquote-footer"
-                            style="color: white;
-                                    font-size: 20px;
-                                    font-weight: 500;
-                                    font-family: 'Inconsolata', monospace;">
-                                    {{ quotes.author }}
-                        </footer>
-                    </blockquote>
-                </div>
-            </div>
+            <!-- <div class="col-md-4">
+                
+            </div> -->
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
