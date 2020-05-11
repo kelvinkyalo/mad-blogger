@@ -1,11 +1,12 @@
 import os
 import secrets
+import requests
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from blog import app, db, bcrypt, mail
 from blog.forms import (RegistrationForm, LoginForm, UpdateAccountForm, NewsLetterForm,
-                        PostForm, RequestResetForm, ResetPasswordForm)
-from blog.models import User, Post
+                        PostForm, RequestResetForm, ResetPasswordForm, CommentForm)
+from blog.models import User, Post, Comment
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 
@@ -13,10 +14,22 @@ from flask_mail import Message
 @app.route('/')
 @app.route('/home')
 def home():
+    url = 'http://quotes.stormconsultancy.co.uk/random.json'
+    author = 'Yogi Berra'
+    quote = 'In theory, theory and practice are the same. In practice, they\u2019re not.'
+
+    r = requests.get(url.format(author, quote)).json()
+    
+    quotes = {
+        'author' : r['author'],
+        'quote' : r['quote'],
+    }
+    print(quotes)
+
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
     title = 'BlogHub'
-    return render_template('home.html', title=title, posts=posts)
+    return render_template('home.html', title=title, posts=posts, quotes=quotes)
 
 @app.route('/newsletter', methods=['GET', 'POST'])
 def newsletter():
@@ -109,10 +122,12 @@ def new_post():
     return render_template('create_post.html', title= 'New Post',
                             form=form, legend='New Post')
 
-@app.route('/post/<int:post_id>')
+@app.route('/post/<int:post_id>', methods=['GET', 'POST'])
 def post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template('post.html', title='Post Title', post=post)
+
+
 
 @app.route('/post/<int:post_id>/update', methods=['GET', 'POST'])
 @login_required
