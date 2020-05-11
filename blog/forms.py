@@ -86,3 +86,12 @@ class ResetPasswordForm(FlaskForm):
                                 validators=[DataRequired(),
                                 EqualTo('password')])
     submit = SubmitField('Reset Password')
+
+class NewsLetterForm(FlaskForm):
+    name = StringField('Your name',
+                            validators=[DataRequired(),
+                            Length(min=2, max=20)])
+    email = StringField('Email',
+                            validators=[DataRequired(),
+                            Email()])
+    submit = SubmitField('Subscribe')
