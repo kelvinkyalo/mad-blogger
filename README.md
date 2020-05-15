@@ -9,7 +9,7 @@ Kelvin Kyalo
 * HTML/CSS/Bootstrap
 
 ## Live Link
-You can view this application by navigating on your browser to :https://glacial-mountain-77056.herokuapp.com/
+You can view this application by navigating on your browser to :https://mad-blogger.herokuapp.com/home
 
 ## BDD
 
