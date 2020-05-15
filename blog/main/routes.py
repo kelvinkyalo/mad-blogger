@@ -10,14 +10,14 @@ main = Blueprint('main', __name__)
 def home():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
-    title = 'BlogHub'
+    title = 'Mad-Blogger'
     return render_template('home.html', title=title, posts=posts)
 
 @main.route('/quotes')
 def quotes():
     url = 'http://quotes.stormconsultancy.co.uk/random.json'
-    author = 'Yogi Berra'
-    quote = 'In theory, theory and practice are the same. In practice, they\u2019re not.'
+    author = 'Jeff'
+    quote = 'I just wanted to let you know that the second episode of Doctor Who season, titled "The Shakespeare Code'
 
     r = requests.get(url.format(author, quote)).json()
     

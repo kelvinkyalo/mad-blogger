@@ -1,4 +1,4 @@
-#!/home/joan/Documents/Core-IPs/Blog/virtual/bin/python
+#!/home/kelvin/Desktop/blog/Blogpost/virtual/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

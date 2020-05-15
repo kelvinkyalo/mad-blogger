@@ -1,5 +1,4 @@
-from flask import (render_template, url_for, flash,
-                    redirect, request, abort, Blueprint)
+from flask import (render_template, url_for, flash, redirect, request, abort, Blueprint)
 from flask_login import current_user, login_required
 from blog import create_app, db
 from blog.models import Post
@@ -17,7 +16,7 @@ def new_post():
         post = Post(title = form.title.data, content = form.content.data, author = current_user)
         db.session.add(post)
         db.session.commit()
-        flash('Your post been created!', 'success')
+        flash('Your blog has been uploaded', 'success')
         return redirect(url_for('main.home'))
     return render_template('create_post.html', title= 'New Post',
                             form=form, legend='New Post')

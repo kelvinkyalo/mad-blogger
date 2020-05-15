@@ -1,29 +1,27 @@
-{% extends 'layout.html' %}
-{% block content %}
-    <div class="card" style="padding: 20px; background-color: crimson;">
-        <blockquote class="blockquote-reverse">
-            <p style="font-family: monospace; 
+{% extends 'layout.html' %} {% block content %}
+<div class="card" style="padding: 20px; background-color: rgb(78, 130, 202);">
+    <blockquote class="blockquote-reverse">
+        <p style="font-family: monospace; 
                     font-weight: 600;
-                    color: white;
+                    color: rgb(238, 241, 245);
                     font-size: 16px;">
-                    <i class="fa fa-quote-left" aria-hidden="true" style="color: white; font-size: 26px;"></i></br>
-                    {{ quotes.quote }}</br>
-                    <i class="fa fa-quote-right pull-right" aria-hidden="true" style="color: white; font-size: 26px;"></i>
-            </p>
-            <footer class="blockquote-footer"
-                style="color: white;
+            <i class="fa fa-quote-left" aria-hidden="true" style="color: rgb(17, 27, 121); font-size: 26px;"></i></br>
+            {{ quotes.quote }}</br>
+            <i class="fa fa-quote-right pull-right" aria-hidden="true" style="color: rgb(19, 58, 185); font-size: 26px;"></i>
+        </p>
+        <footer class="blockquote-footer" style="color: rgb(25, 42, 190);
                         font-size: 20px;
                         font-weight: 500;
                         font-family: 'Inconsolata', monospace;
                         text-align: right;">
-                        {{ quotes.author }}
-            </footer>
-        </blockquote>
-    </div>
-    </br>
-    <div class="text-center">
-        <h1 style="font-family: 'Righteous', cursive;">Hello there. Wanna see a trick?</h1>
-        <h3 style="font-family: 'Caveat', cursive;">Refresh the page....You saw the new quote right?</h3>
-        <h4 style="font-family: 'BenchNine', sans-serif;">Enjoy yourself...<i class="fa fa-smile-o" aria-hidden="true"></i></h4>
-    </div>
+            {{ quotes.author }}
+        </footer>
+    </blockquote>
+</div>
+</br>
+<div class="text-center">
+    <h1 style="font-family: 'Righteous', cursive;">Refresh the page</h1>
+    <h3 style="font-family: 'Caveat', cursive;">A new quote is displayed</h3>
+    <h4 style="font-family: 'BenchNine', sans-serif;">blog on ..<i class="fa fa-smile-o" aria-hidden="true"></i></h4>
+</div>
 {% endblock %}

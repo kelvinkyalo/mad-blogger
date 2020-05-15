@@ -1,22 +1,24 @@
-.nav-item::after{
-    content:'';
-    display:block;
-    width:0px;
-    height:4px;
-    background:#ff0000;
+.nav-item::after {
+    content: '';
+    display: block;
+    width: 0px;
+    height: 4px;
+    background: #00e1ff;
     transition: 0.2s;
-    margin-top:-1px;
+    margin-top: -1px;
 }
 
-.nav-item:hover::after{width:100%;}
+.nav-item:hover::after {
+    width: 100%;
+}
 
-
-.nav-link{padding:35px 5px;transition:0.2s;}
+.nav-link {
+    padding: 35px 5px;
+    transition: 0.2s;
+}
 
 .navbar-nav .nav-link {
-    
-    color:rgb(247, 243, 243);
-    font-weight:bold;
-    font-size:18px;
+    color: rgb(247, 17, 17);
+    font-weight: bold;
+    font-size: 18px;
 }
-

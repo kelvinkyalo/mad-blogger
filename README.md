@@ -1,11 +1,11 @@
 # PROJECT NAME
-Blog-Hub
+Mad-Bloger
 
 ## Author
-Joan Kinyua
+Kelvin Kyalo
 
 ## Technologies Used
-* Pyhton/Flask
+* Python/Flask
 * HTML/CSS/Bootstrap
 
 ## Live Link
@@ -27,4 +27,4 @@ To run this application on your local machine, you may have to run the following
 
 License The MIT license
 
-Copyright (c) Joan Kinyua @2020
+Copyright (c) Kelvin @2020
