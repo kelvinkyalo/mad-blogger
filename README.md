@@ -21,7 +21,7 @@ Create a post | title & content | Posted
 
 # Installations & setup
 To run this application on your local machine, you may have to run the following commands on your terminal on assumptions that Python2.6 and pip are already installed:
-- Clone the application by https://github.com/Joan-w/Blogpost.git
+- Clone the application by https://mad-blogger.herokuapp.com/home
 - Install project dependancies as listed in the requirements.txt file by running `pip install -r requirements.txt`
 - You may also want ot change from 'production' to 'development' in the start.sh file
 
